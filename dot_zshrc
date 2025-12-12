@@ -1,0 +1,246 @@
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+fpath=(~/.zsh/completions $fpath)
+autoload -U +X compinit && compinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+# zinit plugins
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
+zinit light g-plane/pnpm-shell-completion
+
+### End of Zinit's installer chunk
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# 1password
+eval "$(op completion zsh)"; compdef _op op
+
+# Keybindings
+bindkey -e
+
+# History (Atuin)
+eval "$(atuin init zsh)"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Shell integrations
+eval "$(fzf --zsh)"
+
+# Atuin with fzf UI
+atuin-fzf() {
+  local selected
+  selected=$(atuin history list --cmd-only | fzf --tac --no-sort --height=40% --query="$LBUFFER")
+  if [[ -n "$selected" ]]; then
+    LBUFFER="$selected"
+  fi
+  zle reset-prompt
+}
+zle -N atuin-fzf
+bindkey '^[[A' atuin-fzf
+bindkey '^r' atuin-fzf
+
+### ENV ###
+
+# Make Fzf to use ripgrep
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m'
+fi
+
+# NVM configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Load Node global installed binaries
+# export PATH="$HOME/.node/bin:$PATH"
+
+# Use project specific binaries before global ones
+# export PATH="node_modules/.bin:vendor/bin:$PATH"
+
+# fzf catppuccin mocha
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:-1,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
+
+# Own scripts
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+### SECRETS ###
+source "$HOME/.zsh_secrets"
+
+### ALIASES ###
+alias ai="zellij attach aicfo || zellij --session aicfo --layout=dev"
+alias c="claude --dangerously-skip-permissions --ide"
+alias cc="claude --dangerously-skip-permissions --continue --ide"
+alias cat=bat
+alias la='lsd -lah'
+alias lg="langgraph dev --port 5008 --allow-blocking"
+alias lgd="langgraph dev --port 5008 --debug-port 5678 --allow-blocking"
+alias ls='lsd'
+alias lz='lazygit'
+alias nv="source .venv/bin/activate"
+alias p=pnpm
+alias pd="pnpm run dev"
+alias pi="pnpm install"
+alias pnpx="pnpm dlx"
+alias vi="nvim"
+alias z="zellij"
+alias zd="zellij --layout=dev"
+alias zt="zellij --layoyt=ts"
+alias tn="tmux new -s"
+alias ta="tmux attach -t"
+
+export EDITOR="nvim"
+
+# Oh My Posh
+eval "$(oh-my-posh init zsh --config ~/.config/omp/zen.omp.toml)"
+
+# Zoxide
+# eval "$(zoxide init --cmd cd zsh)"
+
+if [[ "$CLAUDECODE" != "1" ]]; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
+
+source "$HOME/gwt/scripts"
+
+# UV completions
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+
+# Postgres client lib
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# .NET
+export PATH="$PATH:/Users/kalle/.dotnet/tools"
+
+# Herd injected PHP binary.
+export PATH="/Users/kalle/Library/Application Support/Herd/bin/":$PATH
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/82/"
+
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/83/"
+
+# bun completions
+[ -s "/Users/kalle/.bun/_bun" ] && source "/Users/kalle/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/kalle/.codeium/windsurf/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+alias claude="/Users/kalle/.claude/local/claude"
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/84/"
+
+# Tmux sessions
+function ts() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list --icons | fzf --height 40% --reverse --ansi \
+      --border-label ' sesh ' --border --prompt '⚡  ' \
+      --header '  ^a all ^t tmux ^g configs ^x zoxide' \
+      --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+      --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+      --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+      --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)')
+    zle reset-prompt > /dev/null 2>&1 || true
+    [[ -z "$session" ]] && return
+    sesh connect "$session"
+  }
+}
+
+zle     -N             ts
+bindkey -M emacs '\eg' ts
+bindkey -M vicmd '\eg' ts
+bindkey -M viins '\eg' ts
+
+# Zellij attach
+za() {
+  zellij attach "$@"
+}
+
+_zellij_sessions() {
+  local sessions
+  sessions=("${(@f)$(zellij list-sessions --no-formatting 2>/dev/null | awk '{print $1}')}")
+  compadd "${sessions[@]}"
+}
+
+compdef _zellij_sessions za
+
+# Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+function zrf () { 
+  zellij run --name "$*" --floating -- zsh -ic "$*"
+}
+
+function zef () { 
+  zellij edit --floating "$*"
+}
+
+ask() {
+  claude --model haiku --print --system-prompt "Answer directly, no follow-ups. Use web search when uncertain. Prioritize brevity and accuracy for CLI/config/coding queries." "$*"
+}
+
+# Added by Antigravity
+export PATH="/Users/kalle/.antigravity/antigravity/bin:$PATH"
+
+# Nume worktree scripts
+[[ -d "$HOME/Projects/Scaleup/nume/scripts" ]] && export PATH="$HOME/Projects/Scaleup/nume/scripts:$PATH"
