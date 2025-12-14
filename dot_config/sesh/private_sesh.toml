@@ -1,0 +1,9 @@
+[[session]]
+name = "tmux"
+path = "~/.config/tmux"
+startup_command = "/Users/kalle/.config/sesh/scripts/tmux.sh"
+
+[[session]]
+name = "nvim"
+path = "~/.config/nvim"
+startup_command = "/Users/kalle/.config/sesh/scripts/nvim.sh"
