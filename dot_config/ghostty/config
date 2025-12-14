@@ -1,0 +1,9 @@
+theme = "Catppuccin Mocha"
+font-family = "MonoLisaV2 Nerd Font"
+background-blur = true
+cursor-invert-fg-bg = true
+window-padding-x = 10
+background-opacity = 0.85
+macos-titlebar-style = hidden
+window-padding-y = 10,0
+keybind = shift+enter=text:\x1b\r
