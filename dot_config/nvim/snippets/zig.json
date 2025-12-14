@@ -1,0 +1,8 @@
+{
+  "expect": {
+    prefix: "exp",
+    body: [
+      "const expect = @import("std").testing.expect;"
+    ]
+  }
+}
