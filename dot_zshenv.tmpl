@@ -1,0 +1,38 @@
+# Cargo/Rust
+. "$HOME/.cargo/env"
+
+# Core environment
+export EDITOR="nvim"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Build flags (libpq)
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+
+# Herd PHP INI dirs
+export HERD_PHP_82_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/82/"
+export HERD_PHP_83_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/83/"
+export HERD_PHP_84_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/84/"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+
+# PATH additions
+export PATH="$HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$PATH:/Users/kalle/.dotnet/tools"
+export PATH="/Users/kalle/Library/Application Support/Herd/bin/:$PATH"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/Users/kalle/.codeium/windsurf/bin:$PATH"
+export PATH="/Users/kalle/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.claude/local:$PATH"
+
+# Secrets (1Password)
+{{- if stat (joinPath .chezmoi.homeDir ".config/op/config") }}
+export OPENAI_API_KEY="{{ onepasswordRead "op://Personal/token-openai/password" }}"
+export ANTHROPIC_API_KEY="{{ onepasswordRead "op://Personal/token-anthropic/password" }}"
+export GEMINI_API_KEY="{{ onepasswordRead "op://Personal/token-gemini/password" }}"
+export HF_TOKEN="{{ onepasswordRead "op://Personal/token-hf/password" }}"
+export SENTRY_API_KEY="{{ onepasswordRead "op://Personal/token-sentry/password" }}"
+export CONTEXT7_API_KEY="{{ onepasswordRead "op://Personal/token-context7/password" }}"
+{{- end }}
