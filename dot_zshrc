@@ -121,6 +121,7 @@ alias zd="zellij --layout=dev"
 alias zt="zellij --layoyt=ts"
 alias tn="tmux new -s"
 alias ta="tmux attach -t"
+alias zm="chezmoi"
 
 export EDITOR="nvim"
 

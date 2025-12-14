@@ -1,0 +1,6 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $s := .chezmoi.stdin | fromJsonc -}}
+{{- $s = $s | setValueAtPath "context_servers.mcp-server-linear.settings.linear_api_key" (onepasswordRead "op://Personal/token-linear/password") -}}
+{{- $s = $s | setValueAtPath "context_servers.mcp-server-context7.settings.context7_api_key" (onepasswordRead "op://Personal/token-context7/password") -}}
+{{- $s = $s | setValueAtPath "context_servers.mcp-server-github.settings.github_personal_access_token" (onepasswordRead "op://Personal/token-github/password") -}}
+{{- $s | toPrettyJson -}}
