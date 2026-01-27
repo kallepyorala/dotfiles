@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Examine eval_runner.py to understand its functionality",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Create eval runner module for the combined app",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Add Run Evals button to home page",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Update navigation to include eval runner",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Test the eval runner functionality",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  }
+]

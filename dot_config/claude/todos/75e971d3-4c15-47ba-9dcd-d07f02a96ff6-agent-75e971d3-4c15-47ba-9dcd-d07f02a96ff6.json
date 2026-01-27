@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Analyze existing evaluator app structure and dependencies",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Check LangSmith SDK usage and dataset operations in codebase",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Create Streamlit app with trace ID input form",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Implement evaluation form with conditional agent selection",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Add LangSmith dataset integration for saving evaluations",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Update .env.example with LANGSMITH_DATASET_NAME",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "Test the complete workflow",
+    "status": "completed",
+    "priority": "low",
+    "id": "7"
+  }
+]

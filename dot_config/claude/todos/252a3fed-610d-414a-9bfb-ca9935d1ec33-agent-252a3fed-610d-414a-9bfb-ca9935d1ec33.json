@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Research current memory_recall implementation in nume agent",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Analyze how memory_recall is currently being used",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Design short-term memory tool architecture",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Implement short-term memory tool replacement",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Update nume agent to use new short-term memory tool",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Test the new implementation",
+    "status": "pending",
+    "priority": "low",
+    "id": "6"
+  }
+]

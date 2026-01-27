@@ -1,0 +1,50 @@
+[
+  {
+    "content": "Read current nume_agent.py to understand existing implementation",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Define NumeAgentLLMOutput Pydantic schema for structured routing decisions",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Update Nume state to include tool tracking fields",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Modify nume_agent node to bind tools and structured output schema",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Implement tool response handling and routing logic",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Add conditional routing function for mixed tool scenarios",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "Update graph workflow edges and error handling",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "Test the implementation and validate tool response flow",
+    "status": "completed",
+    "priority": "medium",
+    "id": "8"
+  }
+]

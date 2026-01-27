@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Update README for senior AI engineer position with financial context",
+    "status": "completed",
+    "priority": "high",
+    "id": "update-readme-for-senior"
+  },
+  {
+    "content": "Update dependencies for senior-level AI agent requirements",
+    "status": "completed",
+    "priority": "high",
+    "id": "update-pyproject-dependencies"
+  },
+  {
+    "content": "Enhance starter app to reflect senior-level expectations",
+    "status": "completed",
+    "priority": "medium",
+    "id": "enhance-starter-app"
+  }
+]
