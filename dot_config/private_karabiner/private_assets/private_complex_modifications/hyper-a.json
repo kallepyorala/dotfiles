@@ -1,0 +1,22 @@
+{
+  "title": "Home to Hyper+A",
+  "rules": [
+    {
+      "description": "Map Home to Hyper+A (hold behavior preserved)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "home"
+          },
+          "to": [
+            {
+              "key_code": "a",
+              "modifiers": ["left_command", "left_option", "left_control", "left_shift"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
