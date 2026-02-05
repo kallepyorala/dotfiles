@@ -1,0 +1,29 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Kalle Pyörälä
+	email = kpy@scaleup.finance
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKMoO7DkSCDjCbo2xFAOYcNpRpFBDmvrOaW7T0XYagFC
+[core]
+	excludesfile = /Users/kalle/.gitignore
+[coderabbit]
+	machineId = cli/b2e9e2f2821f4f3197b4ef313aa7c53f
+[push]
+	autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[branch]
+	autoSetupMerge = always

@@ -1,0 +1,144 @@
+{
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "model": "claude-sonnet-4-5-latest",
+      "provider": "anthropic"
+    },
+    "default_profile": "write",
+    "default_width": 535,
+    "dock": "left"
+  },
+  "agent_servers": {
+    "claude": {
+      "default_mode": "bypassPermissions"
+    }
+  },
+  "base_keymap": "VSCode",
+  "buffer_font_family": "MonoLisa Nerd Font",
+  "buffer_font_size": 14,
+  "context_servers": {
+    "chrome-devtools": {
+      "args": ["chrome-devtools-mcp@latest"],
+      "command": "npx",
+      "enabled": true
+    },
+    "mcp-server-context7": {
+      "enabled": true,
+      "settings": {
+        "context7_api_key": "{{ onepasswordRead "op://Personal/token-context7/password" }}"
+      }
+    },
+    "mcp-server-github": {
+      "enabled": true,
+      "settings": {
+        "github_personal_access_token": "{{ onepasswordRead "op://Personal/token-github/password" }}"
+      }
+    },
+    "mcp-server-linear": {
+      "enabled": true,
+      "settings": {
+        "linear_api_key": "{{ onepasswordRead "op://Personal/token-linear/password" }}"
+      }
+    },
+    "postgres-context-server": {
+      "enabled": true,
+      "settings": {
+        "database_url": "postgres:postgres@localhost:5432/web"
+      }
+    }
+  },
+  "edit_predictions": {
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_text_threads": false,
+    "mode": "subtle"
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "git_panel": {
+    "default_width": 550
+  },
+  "icon_theme": "Catppuccin Mocha",
+  "languages": {
+    "CSS": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "JSON": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "JSONC": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "JavaScript": {
+      "formatter": [
+        { "code_action": "source.fixAll.biome" },
+        { "code_action": "source.organizeImports.biome" },
+        { "language_server": { "name": "biome" } }
+      ]
+    },
+    "Python": {
+      "format_on_save": "on",
+      "formatter": [
+        { "code_action": "source.organizeImports.ruff" },
+        { "code_action": "source.fixAll.ruff" },
+        { "language_server": { "name": "ruff" } }
+      ],
+      "language_servers": ["pyright", "ruff"]
+    },
+    "TSX": {
+      "formatter": [
+        { "code_action": "source.fixAll.biome" },
+        { "code_action": "source.organizeImports.biome" },
+        { "language_server": { "name": "biome" } }
+      ]
+    },
+    "TypeScript": {
+      "formatter": [
+        { "code_action": "source.fixAll.biome" },
+        { "code_action": "source.organizeImports.biome" },
+        { "language_server": { "name": "biome" } }
+      ]
+    }
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+  "project_panel": {
+    "dock": "right",
+    "sticky_scroll": false
+  },
+  "relative_line_numbers": "enabled",
+  "show_edit_predictions": true,
+  "theme": {
+    "dark": "Catppuccin Mocha (Blur) [Heavy]",
+    "light": "One Light",
+    "mode": "system"
+  },
+  "ui_font_size": 16,
+  "vim": {
+    "highlight_on_yank_duration": 50,
+    "toggle_relative_line_numbers": true,
+    "use_smartcase_find": true
+  },
+  "vim_mode": true
+}

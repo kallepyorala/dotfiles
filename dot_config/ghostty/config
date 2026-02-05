@@ -1,9 +1,10 @@
 theme = "Catppuccin Mocha"
-font-family = "MonoLisaV2 Nerd Font"
+font-family = "MonoLisa Nerd Font"
 background-blur = true
 cursor-invert-fg-bg = true
 window-padding-x = 10
 background-opacity = 0.85
 macos-titlebar-style = hidden
-window-padding-y = 10,0
+window-padding-y = 10,5
 keybind = shift+enter=text:\x1b\r
+auto-update-channel = tip

@@ -22,7 +22,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 # zinit plugins
-source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+[[ -f ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -77,10 +77,11 @@ export FZF_DEFAULT_OPTS=" \
 --color=border:#6C7086,label:#CDD6F4"
 
 ### ALIASES ###
-alias rm=trash
+alias rm=rmtrash
 alias c="claude --dangerously-skip-permissions --ide"
 alias cc="claude --dangerously-skip-permissions --continue --ide"
 alias cat=bat
+alias gc='zed ~/.config/ghostty/config'
 alias la='lsd -lah'
 alias lg="langgraph dev --port 5008 --allow-blocking"
 alias lgd="langgraph dev --port 5008 --debug-port 5678 --allow-blocking"
@@ -103,6 +104,9 @@ eval "$(oh-my-posh init zsh --config ~/.config/omp/zen.omp.toml)"
 if [[ "$CLAUDECODE" != "1" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
+
+# Local binaries (Claude Code, etc.)
+export PATH="$HOME/.local/bin:$PATH"
 
 [[ -d "$HOME/Projects/Scaleup/nume/scripts" ]] && export PATH="$HOME/Projects/Scaleup/nume/scripts:$PATH"
 
@@ -153,3 +157,7 @@ function y() {
 ask() {
   claude --model haiku --print --system-prompt "Answer directly, no follow-ups. Use web search when uncertain. Prioritize brevity and accuracy for CLI/config/coding queries." "$*"
 }
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/kalle/Library/Application Support/Herd/config/php/84/"
