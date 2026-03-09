@@ -30,7 +30,6 @@ export PATH="$HOME/.claude/local:$PATH"
 # Secrets (1Password)
 {{- if stat (joinPath .chezmoi.homeDir ".config/op/config") }}
 export OPENAI_API_KEY="{{ onepasswordRead "op://Personal/token-openai/password" }}"
-export ANTHROPIC_API_KEY="{{ onepasswordRead "op://Personal/token-anthropic/password" }}"
 export GEMINI_API_KEY="{{ onepasswordRead "op://Personal/token-gemini/password" }}"
 export HF_TOKEN="{{ onepasswordRead "op://Personal/token-hf/password" }}"
 export SENTRY_API_KEY="{{ onepasswordRead "op://Personal/token-sentry/password" }}"
@@ -38,4 +37,6 @@ export CONTEXT7_API_KEY="{{ onepasswordRead "op://Personal/token-context7/passwo
 export RESEND_API_KEY="{{ onepasswordRead "op://Personal/token-resend/password" }}"
 export LANGSMITH_API_KEY="{{ onepasswordRead "op://Personal/token-langsmith/password" }}"
 export LINEAR_API_TOKEN="{{ onepasswordRead "op://Personal/token-linear/password" }}"
+export X_BEARER_TOKEN="{{ onepasswordRead "op://Personal/TwitterBearer/password" }}"
+export OPENROUTER_API_KEY="{{ onepasswordRead "op://Personal/token-openrouter/password" }}"
 {{- end }}
